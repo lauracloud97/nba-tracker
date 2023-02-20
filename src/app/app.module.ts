@@ -1,16 +1,51 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
+import { ApiTeamsService } from './services/api-teams-service/api-teams.service';
+import { GamesPageComponent } from './views/games-page/games-page.component';
+import { TeamsTrackerComponent } from './views/teams-tracker/teams-tracker.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { TeamCardComponent } from './views/team-card/team-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GamesPageComponent,
+    TeamsTrackerComponent,
+    TeamCardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'API_URL', useValue: 'https://free-nba.p.rapidapi.com'
+    },
+    {
+      provide: 'API_HEADERS', useValue: {
+        'X-RapidAPI-Key': 'bcf73b3c29mshf9cee89e66816adp19d9b0jsnde04ea88108c',
+        'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
+      }
+    },
+    ApiTeamsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

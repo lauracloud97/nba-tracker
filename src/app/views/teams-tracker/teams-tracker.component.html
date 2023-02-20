@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+        <mat-label>Team</mat-label>
+        <mat-select formControlName="team" id="teamSelect">
+            <mat-option *ngFor="let team of $teams | async" [value]="team.id">
+                {{ team.full_name }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('team')?.hasError('required')"> The field is required </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" id="trackBtn" type="submit">Track team</button>
+</form>
+
+<ng-container *ngIf="selectedTeams.length > 0">
+    <app-team-card *ngFor="let teamData of selectedTeams"></app-team-card>
+</ng-container>
