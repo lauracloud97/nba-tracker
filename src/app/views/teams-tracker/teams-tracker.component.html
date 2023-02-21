@@ -12,5 +12,5 @@
 </form>
 
 <ng-container *ngIf="selectedTeams.length > 0">
-    <app-team-card *ngFor="let teamData of selectedTeams"></app-team-card>
+    <app-team-card *ngFor="let team of selectedTeams" [team]="team" [datesRange]="dates" (close)="onTeamCardClose(team.id)"></app-team-card>
 </ng-container>

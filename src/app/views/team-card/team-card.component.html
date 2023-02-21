@@ -1,1 +1,24 @@
-<p>team-card works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> 
+            <p>{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
+            <p (click)="onCloseCard()" id="remove{{team?.abbreviation}}"> X </p>
+        </mat-card-title>
+        <mat-card-subtitle> {{ team?.conference }} conference </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <p> Results for past 12 days:</p>
+            <div *ngFor="let game of $games | async">
+                <div *ngIf="calculateResult(game); else lose">W</div>
+                <ng-template #lose>L</ng-template>
+            </div>
+            <p> Avg pts scored: {{ avgScored }} </p>
+            <p> Avg pts conceded: {{ avgConceded }} </p>
+        </div>
+        <img [src]="logoUrl">
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" id="result{{team?.abbreviation}}" (click)="goToGameResults()">See game results >></button>
+    </mat-card-actions>
+</mat-card>

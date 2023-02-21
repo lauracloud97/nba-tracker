@@ -9,12 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
-import { ApiTeamsService } from './services/api-teams-service/api-teams.service';
 import { GamesPageComponent } from './views/games-page/games-page.component';
 import { TeamsTrackerComponent } from './views/teams-tracker/teams-tracker.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { TeamCardComponent } from './views/team-card/team-card.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { TeamCardComponent } from './views/team-card/team-card.component';
     MatFormFieldModule,
     MatButtonModule,
     FormsModule,
+    MatCardModule,
     ReactiveFormsModule
   ],
   providers: [
@@ -43,9 +44,9 @@ import { TeamCardComponent } from './views/team-card/team-card.component';
         'X-RapidAPI-Key': 'bcf73b3c29mshf9cee89e66816adp19d9b0jsnde04ea88108c',
         'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
       }
-    },
-    ApiTeamsService,
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

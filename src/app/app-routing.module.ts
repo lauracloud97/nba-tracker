@@ -5,7 +5,7 @@ import { TeamsTrackerComponent } from './views/teams-tracker/teams-tracker.compo
 
 export const appRoutes: Routes = [
   { path: '', component: TeamsTrackerComponent },
-  { path: ':teamId', component: GamesPageComponent }
+  { path: 'results/:teamCode', component: GamesPageComponent }
 ]
 
 @NgModule({
