@@ -14,7 +14,6 @@ import { Team } from 'src/app/shared/models/team.model';
 export class TeamCardComponent implements OnInit, OnChanges {
 
   @Input() team: Team | undefined;
-  @Input() datesRange: Array<string> = [];
   @Output() close: EventEmitter<number> = new EventEmitter<number>();
 
   public logoUrl: string = '';
@@ -32,7 +31,7 @@ export class TeamCardComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     if(this.team){
       this.logoUrl = `https://interstate21.com/nba-logos/${this.team.abbreviation}.png`
-      this.$games = this.nbaApiService.getTeamGames(this.team.id, this.datesRange);
+      this.$games = this.nbaApiService.getTeamGames(this.team.id);
       this.$games.subscribe(data => this.calculateAVG(data));
     }
   }

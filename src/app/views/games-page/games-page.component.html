@@ -1,1 +1,22 @@
-<p>games-page works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> 
+            <p>{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
+        </mat-card-title>
+        <mat-card-subtitle> {{ team?.conference }} conference </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <p> Scores of past 12 days:</p>
+            <div *ngFor="let game of $games | async">
+                <p> {{ game.home_team.abbreviation }} </p>
+                <p> {{ game.home_team_score }} </p>
+                <p> {{ game.visitor_team_score }} </p>
+                <p> {{ game.visitor_team.abbreviation }} </p>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" id="backBtn" routerLink="/"> {{ buttonText }} </button>
+    </mat-card-actions>
+</mat-card>

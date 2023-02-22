@@ -1,12 +1,12 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title> 
-            <p>{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
-            <p (click)="onCloseCard()" id="remove{{team?.abbreviation}}"> X </p>
+        <mat-card-title class="row"> 
+            <p class="col-10">{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
+            <p class="col-2" (click)="onCloseCard()" id="remove{{team?.abbreviation}}"> X </p>
         </mat-card-title>
         <mat-card-subtitle> {{ team?.conference }} conference </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="row">
         <div>
             <p> Results for past 12 days:</p>
             <div *ngFor="let game of $games | async">
