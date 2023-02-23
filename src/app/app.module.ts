@@ -7,22 +7,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { AppComponent } from './app.component';
 import { GamesPageComponent } from './views/games-page/games-page.component';
 import { TeamsTrackerComponent } from './views/teams-tracker/teams-tracker.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { TeamCardComponent } from './views/team-card/team-card.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GameStatPipe } from './shared/pipes/game-stat.pipe';
+import { ResultColorDirective } from './shared/directives/result-color.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     GamesPageComponent,
     TeamsTrackerComponent,
-    TeamCardComponent
+    TeamCardComponent,
+    GameStatPipe,
+    ResultColorDirective
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatButtonModule,
     FormsModule,
     MatCardModule,
+    MatIconModule,
     ReactiveFormsModule,
     NgbModule
   ],

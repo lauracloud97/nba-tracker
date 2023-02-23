@@ -1,22 +1,22 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title> 
-            <p>{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
-        </mat-card-title>
-        <mat-card-subtitle> {{ team?.conference }} conference </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <div>
-            <p> Scores of past 12 days:</p>
-            <div *ngFor="let game of $games | async">
-                <p> {{ game.home_team.abbreviation }} </p>
-                <p> {{ game.home_team_score }} </p>
-                <p> {{ game.visitor_team_score }} </p>
-                <p> {{ game.visitor_team.abbreviation }} </p>
+<div class="col mt-4">
+    <mat-card class="col-6">
+        <mat-card-header class="row">
+            <mat-card-title class="row"> 
+                <p class="col">{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
+            </mat-card-title>
+            <mat-card-subtitle> {{ team?.conference }} conference </mat-card-subtitle>
+        </mat-card-header>
+        <div class="separator"></div>
+        <mat-card-content class="row">
+            <div class="col-9">
+                <div class="mb-4"> Scores of past 12 days:</div>
+                <div class="col mb-2" *ngFor="let game of $games | async">
+                    <strong>{{ game.home_team.abbreviation }}</strong> {{ game.home_team_score }} - {{ game.visitor_team_score }} <strong>{{ game.visitor_team.abbreviation }}</strong>
+                </div>
             </div>
-        </div>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button color="primary" id="backBtn" routerLink="/"> {{ buttonText }} </button>
-    </mat-card-actions>
-</mat-card>
+        </mat-card-content>
+        <mat-card-actions class="row">
+            <button class="col" mat-raised-button id="backBtn" routerLink="/"> {{ buttonText }} </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

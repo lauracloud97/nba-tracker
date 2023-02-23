@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { of, share } from 'rxjs';
+import { share } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { Game } from 'src/app/shared/models/game.model';
 import { Team } from 'src/app/shared/models/team.model';
 
 type HttpHeader = { [name:string] : string }
-type HttpResponse = { data: Array<any>, meta: {total_pages: number, current_page: number, next_page: number, per_page: number, total_count: number}} //todo
+type HttpResponse = { data: [], meta: {total_pages: number, current_page: number, next_page: number, per_page: number, total_count: number}}
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +59,10 @@ export class NbaAPIService {
       })
     }else{
       return this.httpClient.get<Team>(`${this.apiURL}/teams/${teamId}`, {headers: this.headers})
-      .pipe(share());
+      .pipe(map((res: Team)=> {
+        this.selectedTeams.push(res);
+        return res;
+      }),share());
     }
   }
 

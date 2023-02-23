@@ -2,17 +2,17 @@
     <mat-form-field class="col-2" appearance="outline">
         <mat-label>Team</mat-label>
         <mat-select formControlName="team" id="teamSelect">
-            <mat-option *ngFor="let team of $teams | async" [value]="team.id">
+            <mat-option *ngFor="let team of teams" [value]="team.id">
                 {{ team.full_name }}
             </mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('team')?.hasError('required')"> The field is required </mat-error>
     </mat-form-field>
-    <button class="col-1" mat-raised-button color="primary" id="trackBtn" type="submit">Track team</button>
+    <button class="col-1" color="primary" mat-raised-button id="trackBtn" type="submit">Track team</button>
 </form>
 
-<div class="mt-4 row">
+<div class="mt-4 row team-list">
     <ng-container *ngIf="selectedTeams.length > 0">
-        <app-team-card class="col-6" *ngFor="let team of selectedTeams" [team]="team" (close)="onTeamCardClose(team.id)"></app-team-card>
+        <app-team-card class="col-6" *ngFor="let team of selectedTeams;trackBy: trackByItems" [team]="team" (close)="onTeamCardClose(team.id)"></app-team-card>
     </ng-container>
 </div>

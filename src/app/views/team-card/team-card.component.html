@@ -1,24 +1,28 @@
 <mat-card>
-    <mat-card-header>
+    <mat-card-header class="row">
         <mat-card-title class="row"> 
-            <p class="col-10">{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
-            <p class="col-2" (click)="onCloseCard()" id="remove{{team?.abbreviation}}"> X </p>
+            <p class="col-11">{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
+            <button mat-icon-button class="col" (click)="onCloseCard()" id="remove{{team?.abbreviation}}">
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-card-title>
         <mat-card-subtitle> {{ team?.conference }} conference </mat-card-subtitle>
     </mat-card-header>
+    <div class="separator"></div>
     <mat-card-content class="row">
-        <div>
-            <p> Results for past 12 days:</p>
-            <div *ngFor="let game of $games | async">
-                <div *ngIf="calculateResult(game); else lose">W</div>
-                <ng-template #lose>L</ng-template>
+        <div class="col-9">
+            <div class="row mb-4"> Results of past 12 days:</div>                                                              
+            <div class="row mb-4">
+                <ng-container *ngFor="let game of $games | async">
+                    <div class="stat" appResultColor [game]="game" [teamId]="team?.id??-1"> {{ calculateResult(game) | gameStat }} </div>
+                </ng-container>
             </div>
-            <p> Avg pts scored: {{ avgScored }} </p>
-            <p> Avg pts conceded: {{ avgConceded }} </p>
+            <div class="row"> Avg pts scored: <strong class="col">{{ avgScored }}</strong> </div>
+            <div class="row"> Avg pts conceded: <strong class="col">{{ avgConceded }}</strong> </div>
         </div>
-        <img [src]="logoUrl">
+        <img class="col-3" [src]="logoUrl">
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button color="primary" id="result{{team?.abbreviation}}" (click)="goToGameResults()">See game results >></button>
+    <mat-card-actions class="row">
+        <button class="col-3 pl-3" mat-raised-button id="result{{team?.abbreviation}}" routerLink="/results/{{team?.id}}"> {{ buttonText }} </button>
     </mat-card-actions>
 </mat-card>

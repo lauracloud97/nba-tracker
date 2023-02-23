@@ -1,2 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.row {
+    display: flex !important;
+}
+
+.mat-card-header-text{
+    display: flex !important;
+    flex-direction: column;
+    margin: 0px !important;
+}
+
+mat-card {
+    margin-bottom: 32px;
+}
+
+mat-card-title p:first-child {
+    font-weight: 600;
+}
+
+mat-card-content {
+    padding: 0px 32px 0px 32px;
+}
+
+.separator {
+    border-bottom: 3px solid #0000000f;
+    margin-bottom: 20px;
+}
+
+img {
+    height: fit-content !important;
+    align-self: center;
+}
+
+mat-card-actions button {
+    background-color: rgb(37 155 31) !important;
+    color: white !important;
+}
+
+body > app-root > app-teams-tracker > form > mat-form-field > div {
+    padding-bottom: 0px !important;
+    margin: 0px !important;
+}

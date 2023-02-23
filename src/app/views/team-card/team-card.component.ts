@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NbaAPIService } from 'src/app/services/nba-api-service/nba-api.service';
 import { Game } from 'src/app/shared/models/game.model';
@@ -16,6 +15,8 @@ export class TeamCardComponent implements OnInit, OnChanges {
   @Input() team: Team | undefined;
   @Output() close: EventEmitter<number> = new EventEmitter<number>();
 
+  public buttonText : string = 'See game results >>';
+
   public logoUrl: string = '';
   public $games: Observable<Array<Game>>;
 
@@ -23,8 +24,7 @@ export class TeamCardComponent implements OnInit, OnChanges {
   public avgConceded: number = 0;
 
   constructor(private nbaApiService: NbaAPIService,
-    private router: Router,
-  private ref: ChangeDetectorRef) {
+    private ref: ChangeDetectorRef) {
     this.$games = new Observable();
    }
 
@@ -32,14 +32,14 @@ export class TeamCardComponent implements OnInit, OnChanges {
     if(this.team){
       this.logoUrl = `https://interstate21.com/nba-logos/${this.team.abbreviation}.png`
       this.$games = this.nbaApiService.getTeamGames(this.team.id);
-      this.$games.subscribe(data => this.calculateAVG(data));
+      this.$games.subscribe((data : Array<Game>) => this.calculateAVG(data));
     }
   }
 
   private calculateAVG(games: Array<Game>) : void {
     let totalScored : number = 0;
     let totalConceded : number = 0;
-    games.forEach(game =>{
+    games.forEach((game : Game) =>{
       totalScored += game.home_team.id == this.team?.id ? game.home_team_score : game.visitor_team_score;
       totalConceded += game.home_team.id == this.team?.id ? game.visitor_team_score : game.home_team_score;
     });
@@ -56,11 +56,8 @@ export class TeamCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) : void {
-    //todo
-  }
-
-  goToGameResults(){
-   this.router.navigate([`/results/${this.team?.id}`])
+    if(changes['team'].currentValue != this.team)
+      this.team = changes['team'].currentValue;
   }
 
   onCloseCard(): void{

@@ -34,7 +34,7 @@ export class GamesPageComponent implements OnInit {
     }));
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() : void{
     this.$subscription.unsubscribe();
   }
 
