@@ -53,5 +53,5 @@ body > app-root > app-teams-tracker > form > mat-form-field > div {
 }
 
 .mat-card>.mat-card-actions:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
 }
