@@ -51,3 +51,7 @@ body > app-root > app-teams-tracker > form > mat-form-field > div {
 .mat-card>.mat-divider-horizontal {
     position: relative !important;
 }
+
+.mat-card>.mat-card-actions:last-child {
+    margin-bottom: 0px;
+}
