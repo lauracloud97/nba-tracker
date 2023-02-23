@@ -25,7 +25,7 @@ mat-card-title p:first-child {
 }
 
 mat-card-content {
-    padding: 0px 32px 0px 32px;
+    padding: 12px 32px 0px 32px;
 }
 
 .separator {
@@ -46,4 +46,8 @@ mat-card-actions button {
 body > app-root > app-teams-tracker > form > mat-form-field > div {
     padding-bottom: 0px !important;
     margin: 0px !important;
+}
+
+.mat-card>.mat-divider-horizontal {
+    position: relative !important;
 }

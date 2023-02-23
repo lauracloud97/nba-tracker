@@ -2,17 +2,9 @@
     color: white;
     border-radius: 25px;
     width: fit-content;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-right: 8px;
     background-color: black;
-}
-
-.stat[innerText="W"] {
-    background-color: rgb(37 155 31);
-}
-
-.stat[innerText="L"] {
-    background-color: red;
 }
 
 mat-card-actions {

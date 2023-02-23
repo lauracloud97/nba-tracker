@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TeamCardComponent } from './views/team-card/team-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameStatPipe } from './shared/pipes/game-stat.pipe';
 import { ResultColorDirective } from './shared/directives/result-color.directive';
@@ -39,6 +40,7 @@ import { ResultColorDirective } from './shared/directives/result-color.directive
     FormsModule,
     MatCardModule,
     MatIconModule,
+    MatDividerModule,
     ReactiveFormsModule,
     NgbModule
   ],

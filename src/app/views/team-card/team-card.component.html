@@ -1,18 +1,18 @@
 <mat-card>
     <mat-card-header class="row">
         <mat-card-title class="row"> 
-            <p class="col-11">{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
+            <div class="col-11">{{ team?.full_name }} [{{ team?.abbreviation }}]</div>
             <button mat-icon-button class="col" (click)="onCloseCard()" id="remove{{team?.abbreviation}}">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-card-title>
         <mat-card-subtitle> {{ team?.conference }} conference </mat-card-subtitle>
     </mat-card-header>
-    <div class="separator"></div>
+    <mat-divider></mat-divider>
     <mat-card-content class="row">
         <div class="col-9">
-            <div class="row mb-4"> Results of past 12 days:</div>                                                              
-            <div class="row mb-4">
+            <div class="row mb-1"> Results of past 12 days:</div>                                                              
+            <div class="row mb-3">
                 <ng-container *ngFor="let game of $games | async">
                     <div class="stat" appResultColor [game]="game" [teamId]="team?.id??-1"> {{ calculateResult(game) | gameStat }} </div>
                 </ng-container>
