@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../core/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConferenceTypePipe } from './pipes/conference-type/conference-type.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConferenceTypePipe
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -14,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports : [
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConferenceTypePipe
   ]
 })
 export class SharedModule { }

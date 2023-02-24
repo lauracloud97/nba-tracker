@@ -5,7 +5,7 @@
                 <mat-card-title class="row"> 
                     <p class="col">{{ team.full_name }} [{{ team.abbreviation }}]</p>
                 </mat-card-title>
-                <mat-card-subtitle> {{ team.conference }} conference </mat-card-subtitle>
+                <mat-card-subtitle> {{ team.conference | conferencetype }} conference </mat-card-subtitle>
             </mat-card-header>
             <mat-divider></mat-divider>
             <mat-card-content class="row">
