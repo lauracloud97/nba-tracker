@@ -5,3 +5,39 @@
 form {
     margin-top: 32px;
 }
+
+@media (max-width: 767px) {
+    #trackBtn {
+        margin-top: 12px;
+    }
+
+    mat-form-field {
+        padding: 0px !important;
+    }
+
+    .team-list {
+        padding: 0px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .team-list {
+        padding: 0px;
+    }
+}
+
+@media (min-width: 991px) {
+
+    mat-form-field {
+        padding: 0px !important;
+    }
+
+    #trackBtn {
+        margin-left: 12px;
+    }
+
+    .team-list {
+        padding: 0px;
+    }
+}

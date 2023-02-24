@@ -12,7 +12,7 @@ import { Team } from 'src/app/shared/models/team.model';
 })
 export class GamesPageComponent implements OnInit {
 
-  public buttonText: string = '<< Back to all team stats';
+  public readonly buttonText: string = '<< Back to all team stats';
   public $games: Observable<Array<Game>>;
   public team: Team | undefined;
   private $subscription : Subscription = new Subscription();

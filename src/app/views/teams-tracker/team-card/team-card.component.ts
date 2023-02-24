@@ -15,7 +15,7 @@ export class TeamCardComponent implements OnInit, OnChanges {
   @Input() team: Team | undefined;
   @Output() close: EventEmitter<number> = new EventEmitter<number>();
 
-  public buttonText : string = 'See game results >>';
+  public readonly buttonText : string = 'See game results >>';
 
   public logoUrl: string = '';
   public $games: Observable<Array<Game>>;
@@ -29,7 +29,12 @@ export class TeamCardComponent implements OnInit, OnChanges {
    }
 
   ngOnInit(): void {
+    this.getTeamInfo();
+  }
+
+  private getTeamInfo() : void {
     if(this.team){
+      console.log("oninit")
       this.logoUrl = `https://interstate21.com/nba-logos/${this.team.abbreviation}.png`
       this.$games = this.nbaApiService.getTeamGames(this.team.id);
       this.$games.subscribe((data : Array<Game>) => this.calculateAVG(data));
@@ -40,7 +45,6 @@ export class TeamCardComponent implements OnInit, OnChanges {
     let totalScored : number = 0;
     let totalConceded : number = 0;
     games.forEach((game : Game) =>{
-      console.log(game)
       totalScored += game.home_team.id == this.team?.id ? game.home_team_score : game.visitor_team_score;
       totalConceded += game.home_team.id == this.team?.id ? game.visitor_team_score : game.home_team_score;
     });
@@ -53,8 +57,11 @@ export class TeamCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) : void {
-    if(changes['team'].currentValue != this.team)
+
+    if(changes['team'].currentValue != this.team){
       this.team = changes['team'].currentValue;
+      this.getTeamInfo();
+    }
   }
 
   onCloseCard(): void{

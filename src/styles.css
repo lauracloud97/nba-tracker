@@ -43,7 +43,12 @@ mat-card-actions button {
     color: white !important;
 }
 
-body > app-root > app-teams-tracker > form > mat-form-field > div {
+mat-card-actions {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+body > app-root > app-teams-tracker > div > form > mat-form-field > div {
     padding-bottom: 0px !important;
     margin: 0px !important;
 }

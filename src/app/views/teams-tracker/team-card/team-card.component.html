@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="container-fluid">
     <mat-card-header class="row">
         <mat-card-title class="row"> 
             <div class="col-11">{{ team?.full_name }} [{{ team?.abbreviation | uppercase }}]</div>
@@ -24,6 +24,6 @@
         <img class="col-3" [src]="logoUrl">
     </mat-card-content>
     <mat-card-actions class="row">
-        <button class="col-4 pl-3" mat-raised-button id="result{{ team?.abbreviation | uppercase }}" routerLink="/results/{{team?.id}}"> {{ buttonText }} </button>
+        <button class="col-xs-1 col-lg-5 pl-3" mat-raised-button id="result{{ team?.abbreviation | uppercase }}" routerLink="/results/{{team?.id}}"> {{ buttonText }} </button>
     </mat-card-actions>
 </mat-card>

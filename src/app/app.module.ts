@@ -20,17 +20,7 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     NgbModule
   ],
-  providers: [
-    {
-      provide: 'API_URL', useValue: 'https://free-nba.p.rapidapi.com'
-    },
-    {
-      provide: 'API_HEADERS', useValue: {
-        'X-RapidAPI-Key': 'bcf73b3c29mshf9cee89e66816adp19d9b0jsnde04ea88108c',
-        'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
-      }
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

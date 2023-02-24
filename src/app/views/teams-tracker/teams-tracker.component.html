@@ -1,18 +1,20 @@
-<form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field class="col-2" appearance="outline">
-        <mat-label>Team</mat-label>
-        <mat-select formControlName="team" id="teamSelect">
-            <mat-option *ngFor="let team of teams" [value]="team.id">
-                {{ team.full_name }}
-            </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('team')?.hasError('required')"> The field is required </mat-error>
-    </mat-form-field>
-    <button class="col-1" color="primary" mat-raised-button id="trackBtn" type="submit">Track team</button>
-</form>
-
-<div class="mt-4 row team-list">
-    <ng-container *ngIf="selectedTeams.length > 0">
-        <app-team-card class="col-6" *ngFor="let team of selectedTeams;trackBy: trackByItems" [team]="team" (close)="onTeamCardClose(team.id)"></app-team-card>
-    </ng-container>
+<div class="container-fluid">
+    <form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="col-xs-1 col-md-6 col-lg-3" appearance="outline">
+            <mat-label>Team</mat-label>
+            <mat-select formControlName="team" id="teamSelect">
+                <mat-option *ngFor="let team of teams" [value]="team.id">
+                    {{ team.full_name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('team')?.hasError('required')"> The field is required </mat-error>
+        </mat-form-field>
+        <button class="col-xs-1 col-md-3 col-lg-2" color="primary" mat-raised-button id="trackBtn" type="submit">Track team</button>
+    </form>
+    
+    <div class="mt-4 row team-list">
+        <ng-container *ngIf="selectedTeams.length > 0">
+            <app-team-card class="col-xs-12 col-lg-6" *ngFor="let team of selectedTeams;trackBy: trackByItems" [team]="team" (close)="onTeamCardClose(team.id)"></app-team-card>
+        </ng-container>
+    </div>
 </div>

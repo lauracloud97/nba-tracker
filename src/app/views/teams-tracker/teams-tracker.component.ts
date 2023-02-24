@@ -13,11 +13,9 @@ export class TeamsTrackerComponent implements OnInit {
   public form: FormGroup;
   public selectedTeams: Array<Team>;
   public teams: Array<Team>;
-  public dates: Array<string>;
 
   constructor(private nbaApiService: NbaAPIService,
     private formBuilder: FormBuilder) {
-      this.dates = [];
       this.selectedTeams = [];
       this.teams = [];
       this.form = this.formBuilder.group({

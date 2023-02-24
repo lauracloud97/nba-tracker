@@ -12,12 +12,12 @@ export class TeamGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const teamId : string = route.paramMap.get('teamCode') || "";
+    const teamId: string = route.paramMap.get('teamCode') || "";
 
-      if((teamId == "") || (teamId != "" && Number.isNaN(parseInt(teamId))) || (parseInt(teamId) < 0)){
-        this.router.navigate(['/']);
-        return false;
-      }
+    if ((teamId == "") || (teamId != "" && Number.isNaN(parseInt(teamId))) || (parseInt(teamId) < 0)) {
+      this.router.navigate(['/']);
+      return false;
+    }
 
     return true;
   }

@@ -18,15 +18,18 @@ export class NbaAPIService {
   private teamGamesMap: Map<number, Array<Game>> = new Map<number, Array<Game>>();
   private dateRange: Array<string> = [];
 
-  constructor(@Inject('API_URL') private apiURL: string,
-  @Inject('API_HEADERS') private headers: HttpHeader,
-  private httpClient: HttpClient
-  ) { 
+  private readonly apiUrl: string = 'https://free-nba.p.rapidapi.com';
+  private readonly headers = {
+    'X-RapidAPI-Key': 'bcf73b3c29mshf9cee89e66816adp19d9b0jsnde04ea88108c',
+    'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
+  }
+
+  constructor(private httpClient: HttpClient) { 
     this.setDateRange();
   }
 
   public getAllTeams(): Observable<Array<Team>>{
-    return this.httpClient.get<HttpResponse>(`${this.apiURL}/teams`, {headers: this.headers})
+    return this.httpClient.get<HttpResponse>(`${this.apiUrl}/teams`, {headers: this.headers})
     .pipe(map((res : HttpResponse) => res.data), share());
   }
 
@@ -40,7 +43,7 @@ export class NbaAPIService {
       let dateQueryParam = '';
       dates.forEach(date => dateQueryParam += `&dates[]=${date}`);
   
-      return this.httpClient.get<HttpResponse>(`${this.apiURL}/games?page=0&team_ids[]=${teamId}&per_page=12${dateQueryParam}`, {headers: this.headers})
+      return this.httpClient.get<HttpResponse>(`${this.apiUrl}/games?page=0&team_ids[]=${teamId}&per_page=12${dateQueryParam}`, {headers: this.headers})
       .pipe(map((res: HttpResponse)=> { 
         const games : Array<Game> = res.data.map((game: Game)=>{
           game.winnerTeam = game.home_team_score > game.visitor_team_score ? game.home_team.id : game.visitor_team.id;
@@ -61,7 +64,7 @@ export class NbaAPIService {
         obs.complete();
       })
     }else{
-      return this.httpClient.get<Team>(`${this.apiURL}/teams/${teamId}`, {headers: this.headers})
+      return this.httpClient.get<Team>(`${this.apiUrl}/teams/${teamId}`, {headers: this.headers})
       .pipe(map((res: Team)=> {
         this.selectedTeams.push(res);
         return res;
