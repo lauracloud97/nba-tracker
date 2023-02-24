@@ -26,7 +26,10 @@ export class Game {
         this.time = time;
         this.visitor_team = visitor_team;
         this.visitor_team_score = visitor_team_score;
-        this.winnerTeam = this.home_team_score > this.visitor_team_score ? this.home_team.id : this.visitor_team.id;
+        if(this.home_team_score == this.visitor_team_score)
+            this.winnerTeam = -1;
+        else
+            this.winnerTeam = this.home_team_score > this.visitor_team_score ? this.home_team.id : this.visitor_team.id;
     }
 
 }

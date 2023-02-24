@@ -14,8 +14,11 @@
             <div class="row mb-1"> Results of past 12 days:</div>                                                              
             <div class="row mb-3">
                 <ng-container *ngFor="let game of $games | async">
-                    <div class="stat winner" *ngIf="team?.id == game.winnerTeam"> W </div>
-                    <div class="stat loser" *ngIf="team?.id != game.winnerTeam"> L </div>
+                    <div class="stat tie" *ngIf="game.winnerTeam == -1; else winnerTeam"> T </div>
+                    <ng-template #winnerTeam>
+                        <div class="stat winner" *ngIf="team?.id == game.winnerTeam"> W </div>
+                        <div class="stat loser" *ngIf="team?.id != game.winnerTeam"> L </div>
+                    </ng-template>
                 </ng-container>
             </div>
             <div class="row"> Avg pts scored: <strong class="col">{{ avgScored }}</strong> </div>

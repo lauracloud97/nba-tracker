@@ -15,6 +15,10 @@ mat-card-title {
     background-color: rgb(37 155 31);
 }
 
+.stat.tie {
+    background-color: rgb(21, 91, 205);
+}
+
 .stat.loser {
     background-color: red;
 }

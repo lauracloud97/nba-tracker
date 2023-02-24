@@ -46,7 +46,10 @@ export class NbaAPIService {
       return this.httpClient.get<HttpResponse>(`${this.apiUrl}/games?page=0&team_ids[]=${teamId}&per_page=12${dateQueryParam}`, {headers: this.headers})
       .pipe(map((res: HttpResponse)=> { 
         const games : Array<Game> = res.data.map((game: Game)=>{
-          game.winnerTeam = game.home_team_score > game.visitor_team_score ? game.home_team.id : game.visitor_team.id;
+          if(game.home_team_score == game.visitor_team_score)
+            game.winnerTeam = -1;
+          else
+            game.winnerTeam = game.home_team_score > game.visitor_team_score ? game.home_team.id : game.visitor_team.id;
           return game;
         });
         this.teamGamesMap.set(teamId, games);
