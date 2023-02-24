@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { NbaAPIService } from 'src/app/services/nba-api-service/nba-api.service';
+import { NbaAPIService } from 'src/app/core/services/nba-api-service/nba-api.service';
 import { Game } from 'src/app/shared/models/game.model';
 import { Team } from 'src/app/shared/models/team.model';
 
@@ -29,6 +29,7 @@ export class GamesPageComponent implements OnInit {
         this.nbaApiService.getTeam(teamId).subscribe((data: Team) => {
           this.team = data;
           this.$games = this.nbaApiService.getTeamGames(teamId);
+          
         });
       }
     }));

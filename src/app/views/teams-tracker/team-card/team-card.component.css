@@ -7,6 +7,14 @@
     background-color: black;
 }
 
+.stat.winner {
+    background-color: rgb(37 155 31);
+}
+
+.stat.loser {
+    background-color: red;
+}
+
 mat-card-actions {
     padding-left: 12px;
 }

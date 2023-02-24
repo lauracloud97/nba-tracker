@@ -1,12 +1,12 @@
 <div class="col mt-4">
-    <mat-card class="col-6">
+    <mat-card *ngIf="team != null; else noTeam" class="col-6">
         <mat-card-header class="row">
             <mat-card-title class="row"> 
-                <p class="col">{{ team?.full_name }} [{{ team?.abbreviation }}]</p>
+                <p class="col">{{ team.full_name }} [{{ team.abbreviation }}]</p>
             </mat-card-title>
-            <mat-card-subtitle class="row"> {{ team?.conference }} conference </mat-card-subtitle>
-            <mat-divider class="row"></mat-divider>
+            <mat-card-subtitle> {{ team.conference }} conference </mat-card-subtitle>
         </mat-card-header>
+        <mat-divider></mat-divider>
         <mat-card-content class="row">
             <div class="col-9">
                 <div class="mb-4"> Scores of past 12 days:</div>
@@ -19,4 +19,12 @@
             <button class="col" mat-raised-button id="backBtn" routerLink="/"> {{ buttonText }} </button>
         </mat-card-actions>
     </mat-card>
+    <ng-template #noTeam>
+        <mat-card class="col-6">
+            <mat-card-content> No team found </mat-card-content>
+            <mat-card-actions class="row">
+                <button class="col" mat-raised-button id="backBtn" routerLink="/"> {{ buttonText }} </button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-template>
 </div>

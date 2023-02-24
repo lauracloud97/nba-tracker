@@ -1,8 +1,8 @@
 <mat-card>
     <mat-card-header class="row">
         <mat-card-title class="row"> 
-            <div class="col-11">{{ team?.full_name }} [{{ team?.abbreviation }}]</div>
-            <button mat-icon-button class="col" (click)="onCloseCard()" id="remove{{team?.abbreviation}}">
+            <div class="col-11">{{ team?.full_name }} [{{ team?.abbreviation | uppercase }}]</div>
+            <button mat-icon-button class="col" (click)="onCloseCard()" id="remove{{ team?.abbreviation | uppercase }}">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-card-title>
@@ -14,7 +14,8 @@
             <div class="row mb-1"> Results of past 12 days:</div>                                                              
             <div class="row mb-3">
                 <ng-container *ngFor="let game of $games | async">
-                    <div class="stat" appResultColor [game]="game" [teamId]="team?.id??-1"> {{ calculateResult(game) | gameStat }} </div>
+                    <div class="stat winner" *ngIf="team?.id == game.winnerTeam"> W </div>
+                    <div class="stat loser" *ngIf="team?.id != game.winnerTeam"> L </div>
                 </ng-container>
             </div>
             <div class="row"> Avg pts scored: <strong class="col">{{ avgScored }}</strong> </div>
@@ -23,6 +24,6 @@
         <img class="col-3" [src]="logoUrl">
     </mat-card-content>
     <mat-card-actions class="row">
-        <button class="col-4 pl-3" mat-raised-button id="result{{team?.abbreviation}}" routerLink="/results/{{team?.id}}"> {{ buttonText }} </button>
+        <button class="col-4 pl-3" mat-raised-button id="result{{ team?.abbreviation | uppercase }}" routerLink="/results/{{team?.id}}"> {{ buttonText }} </button>
     </mat-card-actions>
 </mat-card>

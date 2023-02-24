@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NbaAPIService } from 'src/app/services/nba-api-service/nba-api.service';
+import { NbaAPIService } from 'src/app/core/services/nba-api-service/nba-api.service';
 import { Team } from 'src/app/shared/models/team.model';
 
 @Component({
